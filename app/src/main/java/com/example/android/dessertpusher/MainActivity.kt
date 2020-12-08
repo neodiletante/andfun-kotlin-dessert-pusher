@@ -18,6 +18,7 @@ package com.example.android.dessertpusher
 
 import android.content.ActivityNotFoundException
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
@@ -26,6 +27,7 @@ import androidx.core.app.ShareCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.LifecycleObserver
 import com.example.android.dessertpusher.databinding.ActivityMainBinding
+import timber.log.Timber
 
 class MainActivity : AppCompatActivity(), LifecycleObserver {
 
@@ -64,7 +66,8 @@ class MainActivity : AppCompatActivity(), LifecycleObserver {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // TODO (01) Add an info level log statement here
+        //Log.i("MainActivity", "onCreate method")
+        Timber.i("Timber onCreate")
 
         // Use Data Binding to get reference to the views
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
@@ -148,5 +151,34 @@ class MainActivity : AppCompatActivity(), LifecycleObserver {
         return super.onOptionsItemSelected(item)
     }
 
-    // TODO (02) Override the onStart lifecycle method and add an info level log statement
+    override fun onStart() {
+        super.onStart()
+        //Log.i("MainActivity", "onStart method")
+        Timber.i("Timber onStart")
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Timber.i("Timber onPause")
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Timber.i("Timber onResume")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Timber.i("Tmber onDestroy")
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+        Timber.i("onRestart")
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Timber.i("onStop")
+    }
 }
